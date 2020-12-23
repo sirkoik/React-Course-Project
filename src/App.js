@@ -47,7 +47,7 @@ class App extends Component {
 
   render() {
     let persons = null;
-    let btnClasses = [classes.Button];
+    let btnClass = '';
 
     if (this.state.showPersons) {
       persons = (
@@ -65,7 +65,7 @@ class App extends Component {
         </div>        
       );
       
-      btnClasses.push(classes.Red);
+      btnClass = classes.Red;
       // style.backgroundColor = 'red';
       // style[':hover'] = {
       //   backgroundColor: 'salmon',
@@ -88,7 +88,7 @@ class App extends Component {
         <h1>Hi, I'm a react app!</h1>
         <p className={classesArrayJoin}>This is really working.</p>
         <button 
-          className={btnClasses.join(' ')}
+          className={btnClass}
           showPersons={this.state.showPersons} 
           onClick={this.togglePersonsHandler}>
             Toggle Persons
