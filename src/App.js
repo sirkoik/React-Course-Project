@@ -1,21 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
-import styled from 'styled-components';
-
-const StyledButton = styled.button`
-  background-color: ${props => props.showPersons? 'red' : 'green'};
-  color: white;
-  font: inherit;
-  border: 1px solid blue;
-  padding: 8px;
-  cursor: pointer;
-  
-  &:hover {
-    background-color: ${props => props.showPersons? 'salmon' : 'lightgreen'};
-    color: black;
-  }
-`;
 
 class App extends Component {
   state = {
@@ -61,20 +46,9 @@ class App extends Component {
   }
 
   render() {
-    // const style = {
-    //   backgroundColor: 'green',
-    //   color: 'white',
-    //   font: 'inherit',
-    //   border: '1px solid blue',
-    //   padding: '8px',
-    //   cursor: 'pointer',
-    //   ':hover': {
-    //     backgroundColor: 'lightgreen',
-    //     color: 'black'
-    //   }
-    // };
-
     let persons = null;
+    let btnClasses = [classes.Button];
+
     if (this.state.showPersons) {
       persons = (
         <div>
@@ -91,6 +65,7 @@ class App extends Component {
         </div>        
       );
       
+      btnClasses.push(classes.Red);
       // style.backgroundColor = 'red';
       // style[':hover'] = {
       //   backgroundColor: 'salmon',
@@ -101,22 +76,23 @@ class App extends Component {
     //let classes = ['red', 'bold'].join(' '); // 'red bold' - valid CSS class list
     const classesArray = [];
     if (this.state.persons.length <= 2) {
-      classesArray.push('red'); // classes = ['red']
+      classesArray.push(classes.red); // classes = ['red']
     }
     if (this.state.persons.length <= 1) {
-      classesArray.push('bold'); // classes = ['red', 'bold']
+      classesArray.push(classes.bold); // classes = ['red', 'bold']
     }
-    const classes = classesArray.join(' ');
+    const classesArrayJoin = classesArray.join(' ');
 
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1>Hi, I'm a react app!</h1>
-        <p className={classes}>This is really working.</p>
-        <StyledButton 
+        <p className={classesArrayJoin}>This is really working.</p>
+        <button 
+          className={btnClasses.join(' ')}
           showPersons={this.state.showPersons} 
           onClick={this.togglePersonsHandler}>
             Toggle Persons
-        </StyledButton>
+        </button>
         {persons}
       </div>
     );
