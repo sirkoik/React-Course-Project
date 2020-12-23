@@ -89,7 +89,6 @@ class App extends Component {
         <p className={classesArrayJoin}>This is really working.</p>
         <button 
           className={btnClass}
-          showPersons={this.state.showPersons} 
           onClick={this.togglePersonsHandler}>
             Toggle Persons
         </button>
