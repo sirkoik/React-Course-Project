@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import Person from './Person/Person';
+import Cockpit from '../components/Cockpit/Cockpit';
+import Persons from '../components/Persons/Persons';
 
 class App extends Component {
   state = {
@@ -11,6 +12,19 @@ class App extends Component {
     ],
     otherState: 'Another value',
     showPersons: false
+  }
+
+  constructor(props) {
+    super(props);
+    console.log('app.js constructor');
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('[App.js] getDerivedStateFromProps', props);
+  }
+
+  componentDidMount() {
+    console.log('[App.js] componentDidMount');
   }
 
   togglePersonsHandler = () => {
@@ -46,52 +60,26 @@ class App extends Component {
   }
 
   render() {
+    console.log('[App.js] render');
     let persons = null;
-    let btnClass = '';
 
     if (this.state.showPersons) {
-      persons = (
-        <div>
-          {this.state.persons.map((person, index) => {
-            return (
-              <Person 
-                onClick={() => {this.deletePersonHandler(index)}}
-                name={person.name} 
-                age={person.age}
-                key={person.id}
-                changed={(event) => {this.nameChangedHandler(event, person.id)}}></Person>
-            );
-          })}
-        </div>        
-      );
-      
-      btnClass = classes.Red;
-      // style.backgroundColor = 'red';
-      // style[':hover'] = {
-      //   backgroundColor: 'salmon',
-      //   color: 'black'
-      // }
+      persons = <Persons 
+          persons={this.state.persons}
+          clicked={this.deletePersonHandler}
+          changed={this.nameChangedHandler}
+      />;
     }
-
-    //let classes = ['red', 'bold'].join(' '); // 'red bold' - valid CSS class list
-    const classesArray = [];
-    if (this.state.persons.length <= 2) {
-      classesArray.push(classes.red); // classes = ['red']
-    }
-    if (this.state.persons.length <= 1) {
-      classesArray.push(classes.bold); // classes = ['red', 'bold']
-    }
-    const classesArrayJoin = classesArray.join(' ');
 
     return (
       <div className={classes.App}>
-        <h1>Hi, I'm a react app!</h1>
-        <p className={classesArrayJoin}>This is really working.</p>
-        <button 
-          className={btnClass}
-          onClick={this.togglePersonsHandler}>
-            Toggle Persons
-        </button>
+        <Cockpit
+          persons={this.state.persons}
+          showPersons = {this.state.showPersons}
+          clicked={this.togglePersonsHandler}
+          title={this.props.appTitle}
+          >
+        </Cockpit>
         {persons}
       </div>
     );
