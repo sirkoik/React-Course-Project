@@ -15,6 +15,12 @@ class Person extends Component {
         this.inputElementRef.current.focus();
     }
 
+    // This never triggers when the update button is clicked in the cockpit, so the nextProps comparison should be used in Persons.js
+    shouldComponentUpdate(nextProps, prevState) {
+        console.log('[Person.js] shouldComponentUpdate');
+        return nextProps.isAuth !== this.props.isAuth;
+    }
+
     render() {
         console.log('[Person.js] rendering...');
         console.log('[Person.js] isAuth', this.props.isAuth);

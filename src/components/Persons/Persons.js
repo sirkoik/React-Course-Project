@@ -13,7 +13,7 @@ class Persons extends Component {
     shouldComponentUpdate(nextProps, nextState) {
         console.log('[Persons.js] shouldComponentUpdate');
 
-        return nextProps.persons !== this.props.persons || nextProps.isAuthenticated !== this.props.isAuthenticated;
+        return nextProps.persons !== this.props.persons; // || nextProps.isAuthenticated !== this.props.isAuthenticated;
     }
 
     getSnapshotBeforeUpdate(prevProps, prevState) {
