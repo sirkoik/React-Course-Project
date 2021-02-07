@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Aux from '../../hoc/Auxiliary';
 import withClass from '../../hoc/withClass';
 
@@ -11,10 +12,22 @@ class Person extends Component {
             <Aux>
                 <p key="i1" onClick={this.props.onClick}>I'm {this.props.name} and I am {this.props.age} years old!</p>
                 <p key="i2">{this.props.children}</p>
-                <input key="i3" type="text" onChange={this.props.changed} value={this.props.name}></input>            
+                <input 
+                    key="i3" 
+                    type="text" 
+                    onChange={this.props.changed} 
+                    value={this.props.name}
+                ></input>            
             </Aux>
         );
     }
 }
+
+Person.propTypes = {
+    onClick: PropTypes.func,
+    name: PropTypes.string,
+    age: PropTypes.number,
+    changed: PropTypes.func
+};
 
 export default withClass(Person, classes.Person);
