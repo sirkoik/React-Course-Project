@@ -10,25 +10,25 @@ class Persons extends Component {
     //     return state;
     // }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log('[Persons.js] shouldComponentUpdate');
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log('[Persons.js] shouldComponentUpdate');
 
-        return nextProps.persons !== this.props.persons || nextProps.isAuthenticated !== this.props.isAuthenticated;
-    }
+    //     return nextProps.persons !== this.props.persons || nextProps.isAuthenticated !== this.props.isAuthenticated;
+    // }
 
-    getSnapshotBeforeUpdate(prevProps, prevState) {
-        console.log('[Persons.js] getSnapshotBeforeUpdate');
-        return { message: 'snapshot!'};
-    }
+    // getSnapshotBeforeUpdate(prevProps, prevState) {
+    //     console.log('[Persons.js] getSnapshotBeforeUpdate');
+    //     return { message: 'snapshot!'};
+    // }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log('[Persons.js] componentDidUpdate');
-        console.log(snapshot);
-    }
+    // componentDidUpdate(prevProps, prevState, snapshot) {
+    //     console.log('[Persons.js] componentDidUpdate');
+    //     console.log(snapshot);
+    // }
 
-    componentWillUnmount() {
-        console.log('[Persons.js] componentWillUnmount');
-    }
+    // componentWillUnmount() {
+    //     console.log('[Persons.js] componentWillUnmount');
+    // }
 
     render() {
         console.log('[Persons.js] rendering...');
@@ -41,7 +41,6 @@ class Persons extends Component {
                 age={person.age}
                 key={person.id}
                 changed={(event) => {this.props.changed(event, person.id)}}
-                isAuth={this.props.isAuthenticated}
                 ></Person>
             );
         });
